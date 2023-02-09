@@ -24,11 +24,8 @@ public class ActiveMQService {
     @JmsListener(destination = "${mq.queue.send}")
     public void receiveMessage(TextMessage message) {
         try {
-            String text = message.getText();
-            System.out.println(text);
-            sendMessage(text);
-        } catch (JMSException e) {
-            System.out.println(e.getMessage());
+            sendMessage(message.getText());
+        } catch (JMSException ignored) {
         }
     }
 
